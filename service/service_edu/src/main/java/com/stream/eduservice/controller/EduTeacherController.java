@@ -13,7 +13,9 @@ import com.stream.eduservice.service.EduTeacherService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stream.commonutils.R;
 import com.stream.eduservice.entity.EduTeacher;
 
@@ -39,6 +41,24 @@ public class EduTeacherController {
     @GetMapping("findAll")
     public List<EduTeacher> list(){
         return eduTeacherService.list(null);
+    }
+
+    // 分页查询讲师列表
+    // page: 当前页
+    // limit：每页显示记录数
+    @ApiOperation(value = "分页讲师列表")
+    @GetMapping("pageTeacher/{page}/{limit}")
+    public R pageList(@ApiParam(name = "page", value = "当前页码", required = true)@PathVariable Long page,
+                      @ApiParam(name = "limit", value = "每页记录数", required = true)@PathVariable Long limit
+                      ){
+        Page<EduTeacher> pageParam = new Page<>(page, limit);
+        // 分页查询，查询到数据后，会封装到pageParam对象里
+        eduTeacherService.page(pageParam, null);
+        // 获取查询到的数据
+        List<EduTeacher> records = pageParam.getRecords();
+        // 获取总记录数
+        long total = pageParam.getTotal();
+        return R.ok().data("total", total).data("rows", records);  
     }
 
     // 逻辑删除讲师信息
