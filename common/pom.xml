@@ -8,11 +8,11 @@
   </parent>
 
   <groupId>com.stream</groupId>
-  <artifactId>service</artifactId>
+  <artifactId>common</artifactId>
   <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
 
-  <name>service</name>
+  <name>common</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -23,97 +23,46 @@
   </properties>
 
   <dependencies>
-  
-    <dependency>
-        <groupId>com.stream</groupId>
-        <artifactId>service_base</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-    </dependency>
-    <!--hystrix依赖，主要是用 @HystrixCommand -->
-    <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-    </dependency>
-    <!--服务注册-->
-    <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-    </dependency>
-    <!--服务调用-->
-    <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-openfeign</artifactId>
-    </dependency>
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-web</artifactId>
+        <scope>provided </scope>
     </dependency>
     <!--mybatis-plus-->
     <dependency>
         <groupId>com.baomidou</groupId>
         <artifactId>mybatis-plus-boot-starter</artifactId>
-    </dependency>
-    <!--mysql-->
-    <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-    </dependency>
-    <!-- velocity 模板引擎, Mybatis Plus 代码生成器需要 -->
-    <dependency>
-        <groupId>org.apache.velocity</groupId>
-        <artifactId>velocity-engine-core</artifactId>
-    </dependency>
-    <!--swagger-->
-    <dependency>
-        <groupId>io.springfox</groupId>
-        <artifactId>springfox-swagger2</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>io.springfox</groupId>
-        <artifactId>springfox-swagger-ui</artifactId>
+        <scope>provided </scope>
     </dependency>
     <!--lombok用来简化实体类：需要安装lombok插件-->
     <dependency>
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>
+        <scope>provided </scope>
     </dependency>
-    <!--xls-->
+    <!--swagger-->
     <dependency>
-        <groupId>org.apache.poi</groupId>
-        <artifactId>poi</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.poi</groupId>
-        <artifactId>poi-ooxml</artifactId>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger2</artifactId>
+        <scope>provided </scope>
     </dependency>
     <dependency>
-        <groupId>commons-fileupload</groupId>
-        <artifactId>commons-fileupload</artifactId>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger-ui</artifactId>
+        <scope>provided </scope>
     </dependency>
-    <!--httpclient-->
+    <!-- redis -->
     <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpclient</artifactId>
-    </dependency>
-    <!--commons-io-->
-    <dependency>
-        <groupId>commons-io</groupId>
-        <artifactId>commons-io</artifactId>
-    </dependency>
-    <!--gson-->
-    <dependency>
-        <groupId>com.google.code.gson</groupId>
-        <artifactId>gson</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-redis</artifactId>
     </dependency>
 
+    <!-- spring2.X集成redis所需common-pool2 -->
+    <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-pool2</artifactId>
+        <version>2.6.0</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -162,6 +111,6 @@
       </plugins>
     </pluginManagement>
   </build>
-<modules>  <module>service_edu</module>
+<modules>  <module>service_base</module>
   </modules>
 </project>

@@ -183,6 +183,8 @@
         </dependencies>
     </dependencyManagement>
 
-<modules>  <module>service</module>
+  <modules>  
+    <module>service</module>
+    <module>common</module>
   </modules>
 </project>
