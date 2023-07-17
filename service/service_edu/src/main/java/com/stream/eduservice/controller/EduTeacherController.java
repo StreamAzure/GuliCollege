@@ -107,16 +107,16 @@ public class EduTeacherController {
 
     // 根据ID查询讲师信息
     @ApiOperation(value = "根据ID查询讲师")
-    @GetMapping("/getTeacherById/{id}")
-    public R getTeacherById(@PathVariable String id){
+    @GetMapping("/getById/{id}")
+    public R getById(@PathVariable String id){
         EduTeacher eduTeacher = eduTeacherService.getById(id);
         return R.ok().data("teacher", eduTeacher);
     }
 
     // 根据ID修改讲师信息
     @ApiOperation(value = "根据ID修改讲师")
-    @PostMapping("/updateTeacherById")
-    public R updateTeacherById(@RequestBody EduTeacher eduTeacher){
+    @PostMapping("/updateById")
+    public R updateById(@RequestBody EduTeacher eduTeacher){
         if(eduTeacherService.updateById(eduTeacher)){
             return R.ok();
         }
