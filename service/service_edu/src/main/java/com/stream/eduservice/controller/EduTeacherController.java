@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stream.eduservice.service.EduTeacherService;
+import com.stream.exceptionHandler.GuliException;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,6 +39,20 @@ public class EduTeacherController {
 
     @Autowired
     private EduTeacherService eduTeacherService;
+
+    // 以下方法用于测试自定义异常处理
+    @ApiOperation(value = "测试自定义异常处理")
+    @GetMapping("test")
+    public R test(){
+        try{
+            int i = 10/0;
+        }catch(Exception e){
+            throw new GuliException(20001, "执行了自定义异常处理");
+            // 抛出自定义异常，由GlobalExceptionHandler类中的方法进行捕获
+        }
+        return R.ok();
+    }
+
 
     // 查询讲师表所有数据
     @ApiOperation(value = "所有讲师列表")

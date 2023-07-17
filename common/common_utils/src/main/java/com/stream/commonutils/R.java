@@ -41,6 +41,16 @@ public class R {
         return r;
     }
 
+    public R success(Boolean success) {
+        this.setSuccess(success);
+        return this;
+    }
+
+    public R code(Integer code) {
+        this.setCode(code);
+        return this;
+    }
+
     // 通用返回消息
     public R message(String message) {
         this.setMessage(message);
