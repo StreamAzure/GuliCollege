@@ -92,5 +92,37 @@ public class EduTeacherController {
             return R.error();
         }
     }
+
+    // 新增讲师信息
+    @ApiOperation(value = "新增讲师")
+    @PostMapping("/save")
+    public R save(@RequestBody EduTeacher eduTeacher){
+        if(eduTeacherService.save(eduTeacher)){
+            return R.ok();
+        }
+        else {
+            return R.error();
+        }
+    }
+
+    // 根据ID查询讲师信息
+    @ApiOperation(value = "根据ID查询讲师")
+    @GetMapping("/getTeacherById/{id}")
+    public R getTeacherById(@PathVariable String id){
+        EduTeacher eduTeacher = eduTeacherService.getById(id);
+        return R.ok().data("teacher", eduTeacher);
+    }
+
+    // 根据ID修改讲师信息
+    @ApiOperation(value = "根据ID修改讲师")
+    @PostMapping("/updateTeacherById")
+    public R updateTeacherById(@RequestBody EduTeacher eduTeacher){
+        if(eduTeacherService.updateById(eduTeacher)){
+            return R.ok();
+        }
+        else {
+            return R.error();
+        }
+    }
 }
 

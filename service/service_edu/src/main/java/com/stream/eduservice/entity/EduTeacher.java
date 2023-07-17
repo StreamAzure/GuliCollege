@@ -1,6 +1,9 @@
 package com.stream.eduservice.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
@@ -54,9 +57,11 @@ public class EduTeacher implements Serializable {
     @TableLogic // 逻辑删除注解
     private Integer isDeleted;
 
+    @TableField(fill = FieldFill.INSERT) // 自动填充注解
     @ApiModelProperty(value = "创建时间")
     private Date gmtCreate;
 
+    @TableField(fill = FieldFill.INSERT_UPDATE) // 自动填充注解
     @ApiModelProperty(value = "更新时间")
     private Date gmtModified;
 
