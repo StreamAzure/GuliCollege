@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.baomidou.mybatisplus.core.injector.ISqlInjector;
 import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
+import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 
 @Configuration
 @MapperScan("com.stream.eduservice.mapper")

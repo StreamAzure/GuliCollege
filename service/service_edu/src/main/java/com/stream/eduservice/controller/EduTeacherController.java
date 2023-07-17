@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +20,7 @@ import io.swagger.annotations.ApiParam;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stream.commonutils.R;
 import com.stream.eduservice.entity.EduTeacher;
+import com.stream.eduservice.entity.vo.TeacherQuery;
 
 
 /**
@@ -59,6 +62,23 @@ public class EduTeacherController {
         // 获取总记录数
         long total = pageParam.getTotal();
         return R.ok().data("total", total).data("rows", records);  
+    }
+
+    // 条件组合分页查询讲师列表
+    @ApiOperation(value = "条件组合分页讲师列表")
+    @PostMapping("pageTeacherCondition/{page}/{limit}")
+    public R pageTeacherCondition(@ApiParam(name = "page", value = "当前页码", required = true)@PathVariable Long page,
+                                  @ApiParam(name = "limit", value = "每页记录数", required = true)@PathVariable Long limit,
+                                  @RequestBody(required = false) TeacherQuery teacherQuery){
+        // 创建分页page对象
+        Page<EduTeacher> pageParam = new Page<>(page, limit);
+        // 调用方法实现多条件分页查询，传入条件对象teacherQuery
+        eduTeacherService.pageQuery(pageParam, teacherQuery);
+        // 获取查询到的数据
+        List<EduTeacher> records = pageParam.getRecords();
+        // 获取总记录数
+        long total = pageParam.getTotal();
+        return R.ok().data("total", total).data("rows", records);
     }
 
     // 逻辑删除讲师信息

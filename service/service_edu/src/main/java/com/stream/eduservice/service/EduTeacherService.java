@@ -1,6 +1,8 @@
 package com.stream.eduservice.service;
 
 import com.stream.eduservice.entity.EduTeacher;
+import com.stream.eduservice.entity.vo.TeacherQuery;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -12,5 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2023-07-17
  */
 public interface EduTeacherService extends IService<EduTeacher> {
-
+    void pageQuery(Page<EduTeacher> pageParam, TeacherQuery teacherQuery);
 }
