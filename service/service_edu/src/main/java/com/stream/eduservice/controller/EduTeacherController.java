@@ -14,6 +14,7 @@ import com.stream.eduservice.service.EduTeacherService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+import com.stream.commonutils.R;
 import com.stream.eduservice.entity.EduTeacher;
 
 
@@ -41,10 +42,15 @@ public class EduTeacherController {
     }
 
     // 逻辑删除讲师信息
-    @ApiOperation(value = "逻辑删除讲师")
+    @ApiOperation(value = "根据ID删除讲师")
     @DeleteMapping("/deleteTeacherById/{id}")
-    public boolean deleteTeacherById(@PathVariable String id){
-        return eduTeacherService.removeById(id);
+    public R deleteTeacherById(@PathVariable String id){
+        if(eduTeacherService.removeById(id)){
+            return R.ok();
+        }
+        else {
+            return R.error();
+        }
     }
 }
 
