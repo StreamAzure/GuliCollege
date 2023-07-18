@@ -6,7 +6,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.stream.commonutils.R;
 
+import lombok.extern.slf4j.Slf4j;
+
 @ControllerAdvice
+@Slf4j
 public class GlobalExceptionHandler {
     // 指定出现什么异常时执行本方法
     @ExceptionHandler(Exception.class)
@@ -29,6 +32,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public R error(GuliException e){
         e.printStackTrace();
+        log.error(e.getMessage());
         return R.error().code(e.getCode()).message(e.getMsg());
     }
 }
